@@ -53,19 +53,20 @@ function App() {
       setMaxDayOffs(value);
     }
 
+    let startDateValue = today; // Fallback to today if no date is provided
     if (startDateString) {
-
-      const startDateValue = DateTime.fromISO(startDateString).ordinal;
-      setStartDate(startDateValue);
-
-      // Use startDateValue here instead of startDate
-      const [newHolidayArray, newMaxVacation] = strategy({
-        holidayArray: baseHolidayArray,
-        maxDayOffs: value,
-        start: startDateValue
-      });
-      setArray([newHolidayArray, newMaxVacation]);
+      startDateValue = DateTime.fromISO(startDateString).ordinal;
     }
+
+    setStartDate(startDateValue);
+
+    // Use startDateValue here instead of startDate
+    const [newHolidayArray, newMaxVacation] = strategy({
+      holidayArray: baseHolidayArray,
+      maxDayOffs: value,
+      start: startDateValue
+    });
+    setArray([newHolidayArray, newMaxVacation]);
   };
 
 
