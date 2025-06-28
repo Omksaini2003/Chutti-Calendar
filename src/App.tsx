@@ -32,45 +32,66 @@ function App() {
   };
 
   const year = DateTime.now().year
+  const today = DateTime.now().ordinal
 
 
   const [maxDayOffs, setMaxDayOffs] = useState(2);
+  const [startDate, setStartDate] = useState(today);
 
-  const today = DateTime.now().ordinal
 
   const baseHolidayArray = getHolidayArray(year, customHolidays);
 
-  const [holidayArray, maxVacation] = strategy({ holidayArray: baseHolidayArray, maxDayOffs: maxDayOffs, start: today });
+  const [[holidayArray, maxVacation], setArray] = useState(strategy({ holidayArray: baseHolidayArray, maxDayOffs: maxDayOffs, start: startDate }));
 
 
-  const handleMaxOffInput = (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  const value = parseInt((document.getElementById('maxDayOffs') as HTMLInputElement).value, 10); 
-  if (value && value > 0) {
-    setMaxDayOffs(value);
-  }
-};
+
+  const handleFormInput = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const value = parseInt((document.getElementById('maxDayOffs') as HTMLInputElement).value, 10);
+    const startDateString = (document.getElementById('startDate') as HTMLInputElement).value;
+    if (value && value > 0) {
+      setMaxDayOffs(value);
+    }
+
+    if (startDateString) {
+
+      const startDateValue = DateTime.fromISO(startDateString).ordinal;
+      setStartDate(startDateValue);
+
+      // Use startDateValue here instead of startDate
+      const [newHolidayArray, newMaxVacation] = strategy({
+        holidayArray: baseHolidayArray,
+        maxDayOffs: value,
+        start: startDateValue
+      });
+      setArray([newHolidayArray, newMaxVacation]);
+    }
+  };
 
 
   return (
     <>
       <div id='root'>
-        <div style={{ display: 'flex' , height: '100vh'}}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
 
           <div style={{ flex: '5', overflowY: 'auto' }}>
             <Year year={2025} holidayArray={holidayArray} />
           </div>
 
-          <div style={{ flex: '1'}}>
-            
+          <div style={{ flex: '1', fontSize: '1.5rem', marginBottom: '1rem', border: '1px solid black' }}>
+
             <div>
-              <form onSubmit={handleMaxOffInput}>
-                Max Day Offs <input id ='maxDayOffs' type='number' defaultValue={maxDayOffs}/>
+              <form onSubmit={handleFormInput}>
+                <label>
+                  Max Day Offs <input id='maxDayOffs' type='number' defaultValue={maxDayOffs} />
+                </label>
+                <label>
+                  Onwards <input id='startDate' type='date' defaultValue={startDate} />
+                </label>
                 <button>Submit</button>
               </form>
-              <p>You can take {maxVacation} days of vacation</p>
             </div>
-
+            <h2>If you take {maxDayOffs} from office optimally, you can take {maxVacation} days of vacation</h2>
 
             {/* <HolidayList customHolidays={customHolidays} /> */}
           </div>
