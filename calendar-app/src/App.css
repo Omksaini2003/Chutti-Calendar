@@ -1,0 +1,46 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+  /* height: 100vh; */
+}
+
+
+.month {
+  margin-bottom: 2rem;
+  /* margin-bottom: 10px; */
+  display: grid;
+  /* border: 3px solid #ccc; */
+  grid-template-columns: repeat(7, 1fr);
+  /* gap: 1rem; */
+}
+
+.day {
+  /* background-color: #f0f0f0; */
+  border: 1px solid #ccc;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.empty {
+  background-color: #f0f0f0;
+  border: 1px dashed #ccc;
+}
+
+.weekend {
+  background-color: rgb(58, 146, 58);
+  border: 1px solid #ccc;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.off{
+  background-color: yellow;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
