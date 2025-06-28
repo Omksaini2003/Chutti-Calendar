@@ -1,7 +1,7 @@
 
 import { DateTime } from 'luxon';
 import './App.css'
-import HolidayList from './components/HolidayList'
+// import HolidayList from './components/HolidayList'
 import Year from './components/Year'
 import { getHolidayArray } from './utils/holiday-array';
 import strategy from './utils/strategy';
@@ -43,13 +43,14 @@ function App() {
   const [holidayArray, maxVacation] = strategy({ holidayArray: baseHolidayArray, maxDayOffs: maxDayOffs, start: today });
 
 
-  const handleMaxOffInput = (e) => {
-    e.preventDefault();
-    const value = parseInt(e.target[0].value, 10);
-    if (value && value > 0) {
-      setMaxDayOffs(value);
-    }
-  };
+  const handleMaxOffInput = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  const value = parseInt((document.getElementById('maxDayOffs') as HTMLInputElement).value, 10); 
+  if (value && value > 0) {
+    setMaxDayOffs(value);
+  }
+};
+
 
   return (
     <>
@@ -64,7 +65,7 @@ function App() {
             
             <div>
               <form onSubmit={handleMaxOffInput}>
-                Max Day Offs <input type='number' />
+                Max Day Offs <input id ='maxDayOffs' type='number' defaultValue={maxDayOffs}/>
                 <button>Submit</button>
               </form>
               <p>You can take {maxVacation} days of vacation</p>
