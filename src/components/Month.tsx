@@ -1,7 +1,7 @@
 import Day from "./Day";
 import { DateTime } from "luxon";
 
-export default function Month({ monthNumber = 0, year = 2025, holidayArray = [] }: { monthNumber?: number, year?: number , holidayArray?: Array<number> }) {
+export default function Month({ monthNumber = 0, year = 2025, holidayArray = [] , startDate, setStartDate}: { monthNumber?: number, year?: number , holidayArray?: Array<number>, startDate:number, setStartDate: React.Dispatch<React.SetStateAction<number>>}) {
 
     const monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
@@ -28,7 +28,7 @@ export default function Month({ monthNumber = 0, year = 2025, holidayArray = [] 
 
                 {/* Actual days */}
                 {days.map((date) => (
-                    <Day key={date.toISODate()} date={date} holidayArray = {holidayArray} />
+                    <Day key={date.toISODate()} date={date} holidayArray = {holidayArray} startDate={startDate} setStartDate = {setStartDate} />
                 ))}
             </div>
         </>

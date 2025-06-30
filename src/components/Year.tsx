@@ -1,6 +1,7 @@
+// import type { DateTime } from "luxon";
 import Month from "./Month";
 
-export default function Year({ year , holidayArray}: { year: number , holidayArray?: Array<number>}) {
+export default function Year({ year , holidayArray, startDate, setStartDate}: { year: number , holidayArray?: Array<number>, startDate: number, setStartDate: React.Dispatch<React.SetStateAction<number>>}) {
 
     // input => start (def = now), maxoffs, edit baseholidayarray 
 
@@ -13,7 +14,7 @@ export default function Year({ year , holidayArray}: { year: number , holidayArr
             </div>
             <div>
                 {Array.from({ length: (12) }, (_, index) => (
-                    <Month monthNumber={index} year={year} holidayArray={holidayArray} />
+                    <Month key={index} monthNumber={index} year={year} holidayArray={holidayArray} startDate={startDate} setStartDate={setStartDate}/>
                 ))}
             </div>
         </div>

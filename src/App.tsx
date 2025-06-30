@@ -48,25 +48,27 @@ function App() {
   const handleFormInput = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const value = parseInt((document.getElementById('maxDayOffs') as HTMLInputElement).value, 10);
-    const startDateString = (document.getElementById('startDate') as HTMLInputElement).value;
+    // const startDateString = (document.getElementById('startDate') as HTMLInputElement).value;
     if (value && value > 0) {
       setMaxDayOffs(value);
     }
 
-    let startDateValue = today; // Fallback to today if no date is provided
-    if (startDateString) {
-      startDateValue = DateTime.fromISO(startDateString).ordinal;
-    }
-
-    setStartDate(startDateValue);
+    // let startDateValue = today; // Fallback to today if no date is provided
+    // if (startDateString) {
+    //   startDateValue = DateTime.fromISO(startDateString).ordinal;
+    // }
+    
+    // setStartDate(startDateValue);
 
     // Use startDateValue here instead of startDate
     const [newHolidayArray, newMaxVacation] = strategy({
       holidayArray: baseHolidayArray,
       maxDayOffs: value,
-      start: startDateValue
+      // start: startDateValue
+      start: startDate
     });
     setArray([newHolidayArray, newMaxVacation]);
+    // console.log("submitted", value, startDate, newHolidayArray, newMaxVacation);
   };
 
 
@@ -76,7 +78,7 @@ function App() {
         <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
 
           <div style={{ flex: '5', overflowY: 'auto' }}>
-            <Year year={2025} holidayArray={holidayArray} />
+            <Year year={2025} holidayArray={holidayArray} startDate={startDate} setStartDate={setStartDate} />
           </div>
 
           <div style={{ flex: '1', fontSize: '1.5rem', marginBottom: '1rem', border: '1px solid black' }}>
@@ -86,13 +88,13 @@ function App() {
                 <label>
                   Max Day Offs <input id='maxDayOffs' type='number' defaultValue={maxDayOffs} />
                 </label>
-                <label>
-                  Onwards <input id='startDate' type='date' defaultValue={startDate} />
-                </label>
+                {/* <label>
+                  Onwards <input id='startDate' type='date' defaultValue={DateTime.fromObject({ year: year, ordinal: startDate }).toFormat("yyyy-MM-dd")} />
+                </label> */}
                 <button>Submit</button>
               </form>
             </div>
-            <h2>If you take {maxDayOffs} from office optimally, you can take {maxVacation} days of vacation</h2>
+            <h2>If you take {maxDayOffs} days off from office optimally, you can get upto {maxVacation} days of vacation</h2>
 
             {/* <HolidayList customHolidays={customHolidays} /> */}
           </div>
