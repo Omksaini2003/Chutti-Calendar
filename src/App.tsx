@@ -11,22 +11,25 @@ function App() {
 
 
   const customHolidays: Record<string, string[]> = {
-    "2025-01-26": ["Republic Day"],
-    "2025-02-26": ["Maha Shivaratri"],
-    "2025-03-14": ["Holi"],
-    "2025-03-31": ["Eid al-Fitr"],
-    "2025-04-10": ["Mahavir Jayanti"],
-    "2025-04-18": ["Good Friday"],
-    "2025-05-12": ["Buddha Purnima"],
-    "2025-06-07": ["Bakri Eid"],
-    "2025-07-06": ["Muharram"],
-    "2025-08-15": ["Independence Day"],
-    "2025-08-27": ["Ganesh Chaturthi"],
-    "2025-09-05": ["Eid e Milad"],
-    "2025-10-02": ["Gandhi Jayanti", "Dussehra"],
-    "2025-10-20": ["Diwali"],
-    "2025-11-05": ["Guru Nanak Jayanti"],
-    "2025-12-25": ["Christmas Day"],
+    "2026-01-01": ["New Year's Day"],
+    "2026-01-14": ["Makar Sankranti"],
+    "2026-01-26": ["Republic Day"],
+    "2026-03-04": ["Holi"],
+    "2026-03-19": ["Chandramana ugadi"],
+    "2026-03-21": ["Eid al-Fitr"],
+    "2026-04-03": ["Good Friday"],
+    "2026-05-01": ["Labour Day"],
+    "2026-05-28": ["Bakri Eid"],
+    "2026-06-26": ["Muharram"],
+    "2026-08-15": ["Independence Day"],
+    "2026-08-28": ["Varamahalakshmi"],
+    "2026-09-14": ["Ganesh Chaturthi"],
+    "2026-10-02": ["Gandhi Jayanti"],
+    "2026-10-20": ["Aayudh Puja"],
+    "2026-10-21": ["Dusshera"],
+    "2026-11-01": ["Kannada Rajyotsava"],
+    "2026-11-10": ["Diwali"],
+    "2026-12-25": ["Christmas Day"],
 
     // Add more custom holidays as needed
   };
@@ -78,7 +81,7 @@ function App() {
         <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
 
           <div style={{ flex: '5', overflowY: 'auto' }}>
-            <Year year={2025} holidayArray={holidayArray} startDate={startDate} setStartDate={setStartDate} />
+            <Year year={2026} holidayArray={holidayArray} startDate={startDate} setStartDate={setStartDate} />
           </div>
 
           <div style={{ flex: '1', fontSize: '1.5rem', marginBottom: '1rem', border: '1px solid black' }}>
