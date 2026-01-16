@@ -12,7 +12,7 @@ function App() {
 
   const customHolidays: Record<string, string[]> = {
     "2026-01-01": ["New Year's Day"],
-    "2026-01-14": ["Makar Sankranti"],
+    "2026-01-15": ["Makar Sankranti"],
     "2026-01-26": ["Republic Day"],
     "2026-03-04": ["Holi"],
     "2026-03-19": ["Chandramana ugadi"],
